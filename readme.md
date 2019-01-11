@@ -26,7 +26,7 @@ exchangeState | integer | 交换状态
 exchangeDate | date | 交换日期
 updateDate | date | 更新日期
 
-## <span id="bizType"业务类型</span>
+## <span id="bizType">业务类型</span>
 
 
 编码	| 说明
