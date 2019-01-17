@@ -194,6 +194,7 @@ msgList | array | 拉取的消息集合
 index | long | 消息下标
 msgCode | string | 消息唯一业务编码
 originPoj | string | 来源系统
+resultJson | string | eas 调用的结果 json
 sign | string | 签名(通过参数自然排序拼接而成的 md5( key1=val1&key2=val2&...&projectKey=xxx))
 
 ### 请求例子
