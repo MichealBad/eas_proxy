@@ -1,12 +1,4 @@
 
-## 部署说明
-
-- 拷贝代码到本地: git clone http://47.104.165.194:3000/yhglobal.com/easproxyservice.git
-- 进入 src/main 下，使用 maven 构建项目: mvn clean install
-- 将构建好的 war (gateway 项目下的 target) 放置于 tomcat 目录的 webapps/ROOT/ 下
-- 启动 tomcat : ./bin/startup.sh
-- 关闭 tomcat 的时候，因为本项目有线程池，得用 kill -9 PID 杀掉(ps -aux\|grep eas_proxy 可以查到 PID)。
-
 ## EAS 代理接口
 
 ## 部署环境说明
@@ -120,6 +112,58 @@ sign | string | 签名(通过参数自然排序拼接而成的 md5( key1=val1&ke
         "originPoj": "XPS",
         "resultJson": null,
         "updateDate": null
+    },
+    "desc": "调用成功"
+}
+```
+
+## 消息查询接口
+
+> 请求方式：POST<br>
+请求URL ：[/msg/status](#)
+
+字段 |字段类型 |字段说明
+---|---|---
+index | long | 消息游标(跟 msgCode 可以二选一，也可以全带 AND)
+msgCode | string | 消息唯一业务编码(跟 index 可以二选一，也可以全带 AND)
+originPoj | string | 来源系统
+sign | string | 签名(通过参数自然排序拼接而成的 md5(key1=val1&key2=val2&...&projectKey=xxx))
+
+### 请求例子
+```json
+{
+	"index": 1,
+	"originPoj": "xps",
+	"sign": "743d0fdcd3539903268581648358b093"
+}
+```
+
+### 返回参数
+
+[Http 响应](#http)
+
+#### data 参数
+
+[完整消息类型](#exchangeMsg)
+
+### 返回例子
+```json
+{
+    "code": 0,
+    "data": {
+        "bizType": "SO",
+        "createDate": "2019-01-11 02:01:10",
+        "exchangeDate": "2019-01-11 04:01:11",
+        "exchangeState": 1,
+        "exchangeUrl": "http://47.104.154.165:58029/msg/notify",
+        "index": 1,
+        "msgCode": "SQ20180901001",
+        "msgJson": "{}",
+        "msgState": 1,
+        "originCallbackUrl": "http://47.104.154.165:58029/callback/test",
+        "originPoj": "XPS",
+        "resultJson": "{}",
+        "updateDate": "2019-01-16 05:01:08"
     },
     "desc": "调用成功"
 }
