@@ -71,7 +71,7 @@ msg | string | 描述
 msgCode | string | 消息唯一业务编码
 originCallbackUrl | string | 来源回调 url
 originProject | string | 来源系统
-sign | string | 签名(通过参数自然排序拼接而成的 md5( key1=val1&key2=val2&...&projectKey=xxx))
+sign | string | 签名(通过参数自然排序/字典序拼接而成的 md5( key1=val1&key2=val2&...&projectKey=xxx))
 
 ### 请求例子
 ```json
@@ -83,7 +83,6 @@ sign | string | 签名(通过参数自然排序拼接而成的 md5( key1=val1&ke
 	"originProject":"XPS",
 	"sign": "855b600cf5b8cc0fcc6b794181cd2878"
 }
-(signed string: bizType=SO&msgCode=SQ20180901023&msgJson={}&originCallbackUrl=http://127.0.0.1:8080/callback/test&originProject=XPS&projectKey=xxx)
 ```
 
 ### 返回参数
@@ -189,7 +188,6 @@ sign | string | 签名(通过参数自然排序拼接而成的 md5( key1=val1&ke
 	"originProject": "eas",
 	"sign": "16c5303a42a50b3936870f0492e0a575"
 }
-(sign string:index=0&limit=23&originProject=eas&projectKey=xxx)
 ```
 
 ### 返回参数
@@ -257,7 +255,6 @@ sign | string | 签名(通过参数自然排序拼接而成的 md5( key1=val1&ke
 	"resultJson": "{}",
 	"sign": "bab99b8e38b56736077b90ca53e07327"
 }
-(sign string:index=3&msgCode=SQ20180901003&originProject=eas&resultJson={}&projectKey=xxx)
 ```
 
 ### 返回参数
