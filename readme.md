@@ -8,6 +8,48 @@
 正式环境 | 稍微等候
 测试环境 | asked
 
+## 关于签名
+java 签名算法: 理论上就是字典序排序 key 再根据 key 拼接。
+```Java
+	public static boolean checkSign(Map<String, Object> params, String projectKey) {
+        String hash = (String) params.get("sign");
+        params.remove("sign");
+
+        String content = getSignCheckContent(params);
+        content += "&projectKey=" + projectKey;
+        String sign = Md5Util.md5(content);
+        if (sign.equals(hash)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static String getSignCheckContent(Map<String, Object> params) {
+        if (params == null) {
+            return null;
+        }
+
+        StringBuffer content = new StringBuffer();
+        List<String> keys = new ArrayList<>(params.keySet());
+        Collections.sort(keys);
+
+        for (int i = 0; i < keys.size(); i++) {
+            String key = keys.get(i);
+            String value = String.valueOf(params.get(key));
+            content.append((i == 0 ? "" : "&") + key + "=" + value);
+        }
+
+        return content.toString();
+    }
+
+    public static void sign(Map<String, Object> params, String key) {
+        String content = getSignCheckContent(params);
+        content += "&projectKey=" + key;
+        String sign = Md5Util.md5(content);
+        params.put("sign", sign);
+    }
+```
+
 ## <span id="exchangeMsg">消息结构</span>
 
 字段 |字段类型 |字段说明
