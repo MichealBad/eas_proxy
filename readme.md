@@ -220,7 +220,7 @@ sign | string | 签名(通过参数自然排序拼接而成的 md5(key1=val1&key
 字段 |字段类型 |字段说明
 ---|---|---
 index | long | 开始抓取的消息下标(>=)
-limit | long | 抓取的最大大小(<=)
+limit | long | 抓取的条数
 originProject | string | 来源系统
 sign | string | 签名(通过参数自然排序拼接而成的 md5( key1=val1&key2=val2&...&projectKey=xxx))
 
